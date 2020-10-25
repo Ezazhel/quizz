@@ -19,7 +19,6 @@ const getBadReponse = (autreReponses) => {
     return [autreReponses.split(";")[0]];
 };
 const shuffle = (array) => {
-    console.log(array);
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -62,27 +61,34 @@ class DuoCarreReponses extends React.Component {
     }
 
     revealAnswer = (e) => {
-        this.setState({
-            isAnswered: true,
-        });
         const bonneReponse = e.target.dataset.bonneReponse === "true";
-
-        setTimeout(() => this.props.answer(bonneReponse), 1000);
+        this.setState(
+            {
+                isAnswered: true,
+            },
+            () => {
+                setTimeout(() => this.props.answer(bonneReponse), 1000);
+            }
+        );
     };
+    setVariantButtonOnAnswered(reponse) {
+        return this.state.isAnswered
+            ? reponse === this.props.question?.bonneReponse ?? false
+                ? "success"
+                : "danger"
+            : "outline-secondary";
+    }
     render() {
         return this.state.Reponses.map((v) => (
             <BUTTON_RESPONSE
                 key={v}
-                variant={
-                    this.state.isAnswered
-                        ? v === this.props.question.bonneReponse
-                            ? "success"
-                            : "danger"
-                        : "outline-secondary"
+                variant={this.setVariantButtonOnAnswered(v)}
+                data-bonne-reponse={
+                    v === this.props?.question?.bonneReponse ?? false
                 }
-                data-bonne-reponse={v === this.props.question.bonneReponse}
                 onClick={this.revealAnswer}
             >
+                {console.log(this.props.question)}
                 {v}
             </BUTTON_RESPONSE>
         ));
@@ -92,7 +98,8 @@ class DuoCarreReponses extends React.Component {
 export default (props) => {
     return (
         <CONTAINER_RESPONSE>
-            {props.mode.name !== "cash" ? (
+            {console.log(props.mode)}
+            {props.mode !== null && props.mode.name !== "cash" ? (
                 <DuoCarreReponses
                     mode={props.mode}
                     isAnswered={props.isAnswered}
