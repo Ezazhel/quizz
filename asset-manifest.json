@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/quizzdiscord/static/css/main.eb32c3f4.chunk.css",
-    "main.js": "/quizzdiscord/static/js/main.dd05cbc2.chunk.js",
-    "main.js.map": "/quizzdiscord/static/js/main.dd05cbc2.chunk.js.map",
+    "main.js": "/quizzdiscord/static/js/main.ba5ca72f.chunk.js",
+    "main.js.map": "/quizzdiscord/static/js/main.ba5ca72f.chunk.js.map",
     "runtime-main.js": "/quizzdiscord/static/js/runtime-main.932986b8.js",
     "runtime-main.js.map": "/quizzdiscord/static/js/runtime-main.932986b8.js.map",
     "static/css/2.2a86faee.chunk.css": "/quizzdiscord/static/css/2.2a86faee.chunk.css",
     "static/js/2.f585e66d.chunk.js": "/quizzdiscord/static/js/2.f585e66d.chunk.js",
     "static/js/2.f585e66d.chunk.js.map": "/quizzdiscord/static/js/2.f585e66d.chunk.js.map",
     "index.html": "/quizzdiscord/index.html",
-    "precache-manifest.9f146c6d5c22d1b1e859d7d559150e8c.js": "/quizzdiscord/precache-manifest.9f146c6d5c22d1b1e859d7d559150e8c.js",
+    "precache-manifest.b046769f5d55c50b5f25a35274c0fd5a.js": "/quizzdiscord/precache-manifest.b046769f5d55c50b5f25a35274c0fd5a.js",
     "service-worker.js": "/quizzdiscord/service-worker.js",
     "static/css/2.2a86faee.chunk.css.map": "/quizzdiscord/static/css/2.2a86faee.chunk.css.map",
     "static/css/main.eb32c3f4.chunk.css.map": "/quizzdiscord/static/css/main.eb32c3f4.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.2a86faee.chunk.css",
     "static/js/2.f585e66d.chunk.js",
     "static/css/main.eb32c3f4.chunk.css",
-    "static/js/main.dd05cbc2.chunk.js"
+    "static/js/main.ba5ca72f.chunk.js"
   ]
 }
