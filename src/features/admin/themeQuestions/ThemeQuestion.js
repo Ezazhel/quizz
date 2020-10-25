@@ -69,6 +69,7 @@ class ThemeQuestion extends React.Component {
     };
 
     deleteQuestion = (deletedQuestion) => {
+        console.log(deletedQuestion);
         DaoQuestion.deleteQuestionOfTheme(deletedQuestion);
         this.setState({
             questions: DaoQuestion.getQuestionByTheme(deletedQuestion.themeId),
@@ -86,7 +87,7 @@ class ThemeQuestion extends React.Component {
         this.setState({
             themes: DaoTheme.getThemes(),
             selectedQuestion:
-                this.state.selectedQuestion.themeId === deleteTheme.id
+                this.state.selectedQuestion?.themeId === deleteTheme.id
                     ? null
                     : this.state.selectedQuestion,
             selectedTheme:

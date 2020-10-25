@@ -4,7 +4,7 @@ export const QUESTIONS = "questions";
 
 export const insertUpdateQuestion = (questionObject) => {
     let questions = JSON.parse(localStorage.getItem(QUESTIONS)) ?? {};
-    questionObject.id = questionObject.id != null ? questionObject.id : uuid();
+    questionObject.id = questionObject.id !== null ? questionObject.id : uuid();
     let newQuestion = new Question({
         ...questionObject,
     });
