@@ -88,7 +88,6 @@ class DuoCarreReponses extends React.Component {
                 }
                 onClick={this.revealAnswer}
             >
-                {console.log(this.props.question)}
                 {v}
             </BUTTON_RESPONSE>
         ));
@@ -98,7 +97,6 @@ class DuoCarreReponses extends React.Component {
 export default (props) => {
     return (
         <CONTAINER_RESPONSE>
-            {console.log(props.mode)}
             {props.mode !== null && props.mode.name !== "cash" ? (
                 <DuoCarreReponses
                     mode={props.mode}

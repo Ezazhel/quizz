@@ -4,12 +4,10 @@ export const QUESTIONS = "questions";
 
 export const insertUpdateQuestion = (questionObject) => {
     let questions = JSON.parse(localStorage.getItem(QUESTIONS)) ?? {};
-    console.log(questionObject);
+    questionObject.id = questionObject.id != null ? questionObject.id : uuid();
     let newQuestion = new Question({
-        id: questionObject.id !== undefined ? questionObject.id : uuid(),
         ...questionObject,
     });
-
     questions = {
         ...questions,
         [newQuestion.themeId]: {
