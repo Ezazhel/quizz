@@ -72,10 +72,7 @@ export const QUESTION_INTERFACE = styled.div`
     flex-grow: 2;
     border-radius: 5px;
     min-height: 50vh;
-
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    margin: 1rem !important;
 
     .initialize {
         margin: auto;

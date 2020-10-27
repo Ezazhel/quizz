@@ -131,7 +131,7 @@ export default class Game extends React.Component {
                             finish={this.finish}
                         />
                     </Col>
-                    <Col md="2" className="shadow-game d-flex rounded bg-ligth">
+                    <Col md="3" className="d-flex rounded bg-ligth">
                         <EquipesList
                             equipes={this.state.equipes}
                             selectEquipe={this.selectEquipe}

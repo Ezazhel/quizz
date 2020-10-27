@@ -151,9 +151,8 @@ export default class ThemeList extends React.Component {
     };
     render() {
         return (
-            <div className="d-flex flex-column shadow-game flex-grow-1 p-3">
-                <h2>
-                    {`Thème${this.props.selectedTheme !== null ? "" : "s"} : `}{" "}
+            <div className="d-flex flex-column flex-grow-1 m-3">
+                <h2 className="text-center">
                     {this.props.selectedTheme?.name ?? ""}
                 </h2>
                 <div className="d-flex justify-content-around">

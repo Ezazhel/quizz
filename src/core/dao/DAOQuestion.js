@@ -2,23 +2,6 @@ import { Question } from "../models/Question";
 import uuid from "react-uuid";
 export const QUESTIONS = "questions";
 
-export const importQuestionsForTheme = (JSONStringQuestion) => {
-    let questions = JSON.parse(localStorage.getItem(QUESTIONS)) ?? {};
-    Object.keys(questions).map((index) => {
-        questions[index].id = uuid();
-        let newQuestion = new Question({
-            ...questions[index],
-        });
-        questions = {
-            ...questions,
-            [newQuestion.themeId]: {
-                ...questions[newQuestion.themeId],
-                [newQuestion.id]: newQuestion,
-            },
-        };
-    });
-    localStorage.setItem(QUESTIONS, JSON.stringify(questions));
-};
 export const insertUpdateQuestion = (questionObject) => {
     let questions = JSON.parse(localStorage.getItem(QUESTIONS)) ?? {};
     questionObject.id = questionObject?.id ?? uuid();
