@@ -27,7 +27,7 @@ const ListOfThemePickable = (props) => {
                         {props.isBuilding && (
                             <Button
                                 variant="danger"
-                                onClick={() => props.removeFromList(v)}
+                                onClick={() => props.removeThemeFromList(v)}
                             >
                                 X
                             </Button>
@@ -79,9 +79,18 @@ export default class ThemeList extends React.Component {
             themesToPickFrom: {},
             choixTheme: false,
             allThemes: DAOTheme.getThemes(),
+            isLoaded: false,
         };
     }
-    removeFromList = (themeId) => {
+    update;
+    // componentDidMount() {
+    //     const objectThemeList = JSON.parse(localStorage.getItem("ThemeList"));
+    //     this.setState({
+    //         isLoaded: true,
+    //         ...objectThemeList,
+    //     });
+    // }
+    removeThemeFromList = (themeId) => {
         const allThemes = {
             ...this.state.allThemes,
             [themeId]: this.state.themesToPickFrom[themeId],
@@ -172,7 +181,7 @@ export default class ThemeList extends React.Component {
                             finalizeBuilding={this.finalizeBuilding}
                             selectTheme={this.selectTheme}
                             themesToPickFrom={this.state.themesToPickFrom}
-                            removeFromList={this.removeFromList}
+                            removeThemeFromList={this.removeThemeFromList}
                             isBuilding={this.state.isBuilding}
                         />
                     )}

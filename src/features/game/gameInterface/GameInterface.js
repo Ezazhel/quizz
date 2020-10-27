@@ -84,7 +84,9 @@ export default class GameInterface extends React.Component {
         }, this.state.baseTimer * 1000);
     };
 
-    answer = (bonneReponse) => {
+    answer = (e) => {
+        const bonneReponse = e.target.dataset.bonneReponse === "true";
+
         this.props.finish(bonneReponse, this.state.mode);
         this.setState({
             mode: null,
@@ -101,6 +103,12 @@ export default class GameInterface extends React.Component {
                     <div className="initialize">
                         {this.props.canLaunch ? (
                             <Button
+                                style={{
+                                    height: "auto",
+                                    width: "150px",
+                                    minHeight: "100px",
+                                    fontSize: "1.5rem",
+                                }}
                                 variant="outline-info"
                                 onClick={this.launchTimer}
                             >
@@ -113,7 +121,12 @@ export default class GameInterface extends React.Component {
                         )}
                     </div>
                 )}
-
+                {this.state.questionPose &&
+                    this.props.questionToDisplay !== null && (
+                        <div className="text-center">
+                            <h2>{this.props.questionToDisplay?.question}</h2>
+                        </div>
+                    )}
                 {this.state.mode === null && this.state.questionPose && (
                     <SelectionGameMode
                         baseTimer={this.state.baseTimer}
@@ -123,12 +136,6 @@ export default class GameInterface extends React.Component {
                     />
                 )}
 
-                {this.state.questionPose &&
-                    this.props.questionToDisplay !== null && (
-                        <div className="text-center">
-                            <h2>{this.props.questionToDisplay?.question}</h2>
-                        </div>
-                    )}
                 {this.state.mode !== null && (
                     <Reponses
                         answer={this.answer}

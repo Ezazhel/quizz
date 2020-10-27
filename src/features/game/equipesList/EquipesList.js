@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import { LIST_ITEM, LIST_CONTAINER } from "../../../components/StyleFile";
 
 export default (props) => {
@@ -11,23 +11,44 @@ export default (props) => {
                         (a, b) =>
                             props.equipes[b].score - props.equipes[a].score
                     )
-                    .map((v, i) => (
+                    .map((idEquipe, i) => (
                         <LIST_ITEM
-                            key={props.equipes[v].name}
-                            onClick={() => props.selectEquipe(props.equipes[v])}
+                            key={props.equipes[idEquipe].name}
+                            onClick={() =>
+                                props.selectEquipe(props.equipes[idEquipe])
+                            }
                             className={
-                                props.selectedEquipe?.id === v ? "active" : ""
+                                props.selectedEquipe?.id === idEquipe
+                                    ? "active"
+                                    : ""
                             }
                         >
                             <label>
-                                <span>{props.equipes[v].name}</span>
+                                <span>{props.equipes[idEquipe].name}</span>
                                 <Badge
                                     variant="warning"
                                     className="p-2 align-middle"
                                 >
-                                    {props.equipes[v].score}
+                                    {props.equipes[idEquipe].score}
                                 </Badge>
                             </label>
+                            {[1, -1].map((value) => (
+                                <Button
+                                    key={value}
+                                    data-id-equipe={idEquipe}
+                                    data-value={value}
+                                    variant={
+                                        value > 0
+                                            ? "outline-success"
+                                            : "outline-danger"
+                                    }
+                                    onClick={
+                                        props.giveBonusOrMalusSelectedEquipe
+                                    }
+                                >
+                                    {idEquipe > 0 ? "+" : ""}+1
+                                </Button>
+                            ))}
                         </LIST_ITEM>
                     ))}
             </LIST_CONTAINER>

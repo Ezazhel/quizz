@@ -52,6 +52,7 @@ const BUTTON = styled(Button)`
 const QuestionForm = (props) => {
     return (
         <CONTAINER>
+            <Button> Importation des questions de ce thème</Button>
             <Formik
                 initialValues={{
                     question: props.question?.question ?? "",

@@ -6,6 +6,7 @@ import EquipesList from "./equipesList/EquipesList";
 import ThemeList from "./themesList/ThemeList";
 import GameInterface from "./gameInterface/GameInterface";
 
+const GAME = "game";
 export default class Game extends React.Component {
     constructor() {
         super();
@@ -15,15 +16,34 @@ export default class Game extends React.Component {
             selectedTheme: null,
             questions: [],
             currentQuestionIndex: 0,
+            isLoaded: false,
         };
     }
-    initialize = () => {
+
+    updateStateAndSave(object) {
+        this.setState({ ...object }, () => {
+            localStorage.setItem(GAME, JSON.stringify(this.state));
+        });
+    }
+    componentDidMount() {
+        this.loadGameStateFromLocalStorageIfExistElseCreate();
+    }
+    loadGameStateFromLocalStorageIfExistElseCreate() {
+        const objectGame =
+            JSON.parse(localStorage.getItem(GAME)) ?? this.initialize();
         this.setState({
+            isLoaded: true,
+            ...objectGame,
+        });
+    }
+
+    initialize = () => {
+        return {
             selectedEquipe: null,
             selectedTheme: null,
             questions: [],
             currentQuestionIndex: 0,
-        });
+        };
     };
 
     selectTheme = (theme) => {
@@ -31,50 +51,62 @@ export default class Game extends React.Component {
         const questions = Object.keys(themeQuestions).map(
             (v) => themeQuestions[v]
         );
-        this.setState({
+        this.updateStateAndSave({
             selectedTheme: theme,
             questions: questions,
-            currentQuestion: 0,
+            currentQuestionIndex: 0,
         });
     };
 
     selectEquipe = (equipe) => {
-        // if (this.state.selectedEquipe !== null) return;
-        this.setState({
-            selectedEquipe: equipe,
+        this.updateStateAndSave({ selectedEquipe: equipe });
+    };
+
+    finish = (bonneReponse = false, mode) => {
+        let newState = this.setNewScore(bonneReponse, mode);
+        newState = {
+            ...newState,
+            ...(this.state.currentQuestionIndex !==
+            this.state.questions.length - 1
+                ? this.changeQuestionAndRemoveQuestionFromArray()
+                : this.initialize()),
+        };
+
+        this.updateStateAndSave(newState);
+    };
+
+    giveBonusOrMalusSelectedEquipe = (e) => {
+        e.stopPropagation();
+        console.log(e.target.dataset.idEquipe);
+        let equipe = this.state.equipes[e.target.dataset.idEquipe];
+        equipe.score += parseInt(e.target.dataset.value);
+        this.updateStateAndSave({
+            equipes: { ...this.state.equipes, [equipe.id]: equipe },
         });
     };
 
-    finish = (victory = false, mode) => {
+    setNewScore = (bonneReponse = false, mode) => {
         let equipe = this.state.equipes[this.state?.selectedEquipe?.id];
-        if (victory) equipe.score += mode.score;
-        this.setState({
+        equipe.score = bonneReponse ? equipe.score + mode.score : equipe.score;
+        return {
             equipes: {
                 ...this.state.equipes,
                 [this.state.selectedEquipe.id]: equipe,
             },
             selectedEquipe: equipe,
-        });
-        //check end of question (if no more questions)
-        console.log(this.state.currentQuestionIndex);
-        console.log(this.state.questions.length - 1);
-
-        this.state.currentQuestionIndex !== this.state.questions.length - 1
-            ? this.changeQuestionAndRemoveQuestionFromArray()
-            : this.initialize();
+        };
     };
-
-    changeQuestionAndRemoveQuestionFromArray() {
-        this.setState({
+    changeQuestionAndRemoveQuestionFromArray = () => {
+        return {
             currentQuestionIndex: Math.min(
                 this.state.currentQuestionIndex + 1,
                 this.state.questions.length - 1
             ),
-        });
-    }
+        };
+    };
 
     render() {
-        return (
+        return this.state.isLoaded ? (
             <Container fluid className="d-flex flex-column">
                 <div className="d-flex flex-row justify-content-between mt-4">
                     <Col md="3" className="d-flex">
@@ -104,10 +136,15 @@ export default class Game extends React.Component {
                             equipes={this.state.equipes}
                             selectEquipe={this.selectEquipe}
                             selectedEquipe={this.state.selectedEquipe}
+                            giveBonusOrMalusSelectedEquipe={
+                                this.giveBonusOrMalusSelectedEquipe
+                            }
                         />
                     </Col>
                 </div>
             </Container>
+        ) : (
+            <h2> En chargement </h2>
         );
     }
 }
