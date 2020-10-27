@@ -46,7 +46,8 @@ export default (props) => {
                                         props.giveBonusOrMalusSelectedEquipe
                                     }
                                 >
-                                    {idEquipe > 0 ? "+" : ""}+1
+                                    {value > 0 ? "+" : ""}
+                                    {value}
                                 </Button>
                             ))}
                         </LIST_ITEM>
