@@ -84,9 +84,7 @@ export default class GameInterface extends React.Component {
         }, this.state.baseTimer * 1000);
     };
 
-    answer = (e) => {
-        const bonneReponse = e.target.dataset.bonneReponse === "true";
-
+    answer = (bonneReponse) => {
         this.props.finish(bonneReponse, this.state.mode);
         this.setState({
             mode: null,
@@ -98,7 +96,7 @@ export default class GameInterface extends React.Component {
 
     render() {
         return (
-            <QUESTION_INTERFACE>
+            <QUESTION_INTERFACE className="shadow-game">
                 {!this.state.questionPose && (
                     <div className="initialize">
                         {this.props.canLaunch ? (
