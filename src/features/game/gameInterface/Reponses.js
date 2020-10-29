@@ -53,7 +53,7 @@ const CashReponses = (props) => {
                     Non
                 </BUTTON_RESPONSE>
             </div>
-            {isAnswered && (
+            {isAnswered && props.bonneReponse && (
                 <div className="m-2 text-center">
                     <h1>{props.bonneReponse}</h1>
                 </div>
@@ -121,7 +121,7 @@ export default (props) => {
             ) : (
                 <CashReponses
                     answer={props.answer}
-                    bonneReponse={props.question.bonneReponse}
+                    bonneReponse={props.question?.bonneReponse}
                 />
             )}
         </CONTAINER_RESPONSE>
