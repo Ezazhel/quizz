@@ -57,7 +57,6 @@ export default class GameInterface extends React.Component {
         this.state = {
             timer: 5,
             baseTimer: 5,
-            isAnswered: false,
             questionPose: false,
             mode: null,
         };
@@ -138,7 +137,6 @@ export default class GameInterface extends React.Component {
                     <Reponses
                         answer={this.answer}
                         mode={this.state.mode}
-                        isAnswered={this.state.isAnswered}
                         question={this.props.questionToDisplay}
                     />
                 )}

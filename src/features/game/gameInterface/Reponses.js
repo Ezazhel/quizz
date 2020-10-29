@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Button } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
 
 const CONTAINER_RESPONSE = styled.div`
     display: grid;
@@ -12,6 +12,7 @@ const CONTAINER_RESPONSE = styled.div`
 const BUTTON_RESPONSE = styled(Button)`
     height: auto;
     min-height: 100px;
+    min-width: 33%;
     font-size: 1.5rem;
 `;
 
@@ -27,23 +28,37 @@ const shuffle = (array) => {
 };
 
 const CashReponses = (props) => {
+    let [isAnswered, setIsAnswered] = useState(false);
+
+    const revealAnswer = (e) => {
+        const bonneReponse = e.target.dataset.bonneReponse === "true";
+        setIsAnswered(true);
+        setTimeout(() => props.answer(bonneReponse), 1000);
+    };
     return (
-        <>
-            <BUTTON_RESPONSE
-                variant="outline-success"
-                data-bonne-reponse={true}
-                onClick={props.answer}
-            >
-                Oui
-            </BUTTON_RESPONSE>
-            <BUTTON_RESPONSE
-                variant="outline-danger"
-                data-bonne-reponse={false}
-                onClick={props.answer}
-            >
-                Non
-            </BUTTON_RESPONSE>
-        </>
+        <div className="d-flex flex-column">
+            <div className="d-flex justify-content-around">
+                <BUTTON_RESPONSE
+                    variant="outline-success"
+                    data-bonne-reponse={true}
+                    onClick={revealAnswer}
+                >
+                    Oui
+                </BUTTON_RESPONSE>
+                <BUTTON_RESPONSE
+                    variant="outline-danger"
+                    data-bonne-reponse={false}
+                    onClick={revealAnswer}
+                >
+                    Non
+                </BUTTON_RESPONSE>
+            </div>
+            {isAnswered && (
+                <div className="m-2 text-center">
+                    <h1>{props.bonneReponse}</h1>
+                </div>
+            )}
+        </div>
     );
 };
 
@@ -76,7 +91,7 @@ class DuoCarreReponses extends React.Component {
             ? reponse === this.props.question?.bonneReponse ?? false
                 ? "success"
                 : "danger"
-            : "outline-secondary";
+            : "outline-light";
     }
     render() {
         return this.state.Reponses.map((v) => (
@@ -100,12 +115,14 @@ export default (props) => {
             {props.mode !== null && props.mode.name !== "cash" ? (
                 <DuoCarreReponses
                     mode={props.mode}
-                    isAnswered={props.isAnswered}
                     answer={props.answer}
                     question={props.question}
                 />
             ) : (
-                <CashReponses answer={props.answer} />
+                <CashReponses
+                    answer={props.answer}
+                    bonneReponse={props.question.bonneReponse}
+                />
             )}
         </CONTAINER_RESPONSE>
     );

@@ -5,7 +5,6 @@ import { LIST_CONTAINER, LIST_ITEM } from "../../../components/StyleFile";
 const ThemesList = (props) => (
     <div>
         <h3> Listes des Thèmes </h3>{" "}
-        <Button onClick={props.importThemes}> Importation des thèmes</Button>
         <div>
             <Formik initialValues={{ theme: "" }} onSubmit={props.addTheme}>
                 {({ handleSubmit, isSubmitting }) => (

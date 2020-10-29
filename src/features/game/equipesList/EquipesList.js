@@ -24,9 +24,9 @@ export default (props) => {
                         }
                         className={`${
                             props.selectedEquipe?.id === idEquipe
-                                ? "table-active "
+                                ? "bg-dark "
                                 : " "
-                        } shadow-game m-3
+                        } shadow-game m-3 rounded
                         `}
                         style={{ display: "flex", flexDirection: "column" }}
                     >

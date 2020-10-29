@@ -97,17 +97,9 @@ class ThemeQuestion extends React.Component {
         });
     };
 
-    importThemes = () => {
-        const JSONStringTheme = prompt();
-        DaoTheme.importThemeFromJsonString(JSONStringTheme);
-        this.setState({
-            themes: DaoTheme.getThemes(),
-        });
-    };
-
     render() {
         return (
-            <Container fluid>
+            <Container fluid className="p-3">
                 <Row>
                     <Col md={"3"} className="mx-auto">
                         <ThemesList
@@ -121,7 +113,7 @@ class ThemeQuestion extends React.Component {
                     </Col>
                     {this.state.selectedTheme !== null && (
                         <>
-                            <Col>
+                            <Col className="d-flex justify-content-center">
                                 <QuestionForm
                                     submit={this.addQuestionToTheme}
                                     selectedTheme={this.state.selectedTheme}

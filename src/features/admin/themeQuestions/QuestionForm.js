@@ -8,7 +8,6 @@ const CONTAINER = styled.div`
     height: auto;
     width: 90%;
     border-radius: 5px;
-    margin: 5em auto;
     color: snow;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);

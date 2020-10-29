@@ -49,7 +49,7 @@ const ListOfThemePickable = (props) => {
 
 const BuildingList = (props) => {
     return !props.isBuilding ? (
-        <Button variant="outline-primary" onClick={props.setIsBuilding}>
+        <Button variant="outline-light" onClick={props.setIsBuilding}>
             Création listes des thèmes
         </Button>
     ) : (
@@ -159,7 +159,7 @@ export default class ThemeList extends React.Component {
                     {Object.keys(this.state.themesToPickFrom).length > 0 &&
                     !this.state.isBuilding ? (
                         <Button
-                            variant="outline-primary"
+                            variant="outline-light"
                             onClick={this.displayThemes}
                         >
                             Selectionner un thème
