@@ -111,9 +111,7 @@ export default class GameInterface extends React.Component {
                                 Lancer
                             </Button>
                         ) : (
-                            <h2 className="text-danger">
-                                Selectionne une équipe et un thème !
-                            </h2>
+                            <h2>Selectionne une équipe et un thème !</h2>
                         )}
                     </div>
                 )}

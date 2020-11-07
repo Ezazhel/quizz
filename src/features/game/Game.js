@@ -108,7 +108,7 @@ export default class Game extends React.Component {
     render() {
         return this.state.isLoaded ? (
             <Container fluid className="d-flex flex-column">
-                <div className="d-flex flex-row justify-content-between mt-4">
+                <div className="d-flex flex-row justify-content-between">
                     <Col md="3" className="d-flex">
                         <ThemeList
                             selectedTheme={this.state.selectedTheme}

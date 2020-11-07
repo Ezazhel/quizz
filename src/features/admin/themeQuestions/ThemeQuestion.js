@@ -97,6 +97,13 @@ class ThemeQuestion extends React.Component {
         });
     };
 
+    importQuestionOfTheme = () => {
+        console.log("Import question pas implémenté");
+        return;
+        // const jsonQuestion = prompt();
+        // DaoQuestion.importQuestionsForTheme(jsonQuestion);
+    };
+
     render() {
         return (
             <Container fluid className="p-3">
@@ -115,6 +122,7 @@ class ThemeQuestion extends React.Component {
                         <>
                             <Col className="d-flex justify-content-center">
                                 <QuestionForm
+                                    importQuestion={this.importQuestionOfTheme}
                                     submit={this.addQuestionToTheme}
                                     selectedTheme={this.state.selectedTheme}
                                     question={this.state.selectedQuestion}
