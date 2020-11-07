@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/quizzdiscord/precache-manifest.34fd0845a7997f61d053b45237b05f56.js"
+  "/quizzdiscord/precache-manifest.eaa35224cdc7db38d8fb0089ca5ed51b.js"
 );
 
 self.addEventListener('message', (event) => {
