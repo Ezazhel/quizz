@@ -39,9 +39,8 @@ const SelectionGameMode = (props) => {
                 ))}
                 {percent === 0 && (
                     <Button
-                        data-bonne-reponse={false}
                         variant="outline-danger"
-                        onClick={props.skip}
+                        onClick={() => props.skip(false)}
                     >
                         {" "}
                         Passer{" "}
